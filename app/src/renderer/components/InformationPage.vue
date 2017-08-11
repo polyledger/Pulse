@@ -1,7 +1,7 @@
 <template>
   <div class="container" id="wrapper">
     <div class="row">
-      <img id="logo" src="~@/assets/img/logo-2.png" alt="Polyledger">
+      <img id="logo" src="~@/assets/img/logo.png" alt="Polyledger">
     </div>
     <div class="row">
       <div class="col-md-6">

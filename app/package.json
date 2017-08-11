@@ -1,7 +1,7 @@
 {
-  "name": "Synapse",
+  "name": "Pulse",
   "version": "0.0.2",
-  "author": "Polyledger, Inc.",
+  "author": "Polyledger",
   "description": "A cross-platform cryptocurrency analytics application",
   "license": null,
   "main": "./dist/electron/main.js",

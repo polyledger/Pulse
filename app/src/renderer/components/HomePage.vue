@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row m-t">
       <div class="col-md-12">
-        <img id="logo" src="~@/assets/img/logo-2.png" alt="Polyledger">
+        <img id="logo" src="~@/assets/img/logo.png" alt="Polyledger">
       </div>
     </div>
     <div class="row m-b">

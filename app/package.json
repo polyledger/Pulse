@@ -23,7 +23,7 @@
   },
   "build": {
     "productName": "Pulse",
-    "appId": "org.simulatedgreg.electron-vue",
+    "appId": "com.polyledger.pulse",
     "directories": {
       "output": "build"
     },

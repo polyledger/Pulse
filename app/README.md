@@ -1,7 +1,3 @@
-# app
-
-> A cryptocurrency platform
-
 #### Build Setup
 
 ``` bash

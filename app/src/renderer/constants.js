@@ -7,7 +7,7 @@ const SUPPORTED_COINS = [
   'XEM',
   'DASH',
   'XMR',
-  'IOT',
+  'MIOTA',
   'ETC'
 ]
 

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="row m-t">
+    <div class="row mt-3">
       <div class="col-md-12">
         <img id="logo" src="~@/assets/img/logo.png" alt="Polyledger">
       </div>
@@ -31,60 +31,52 @@
         <i class="icon icon-bug"></i> {{ alert.error }}
       </div>
     </div>
+
     <div class="row">
-      <div class="hr-divider m-b">
-        <h3 class="hr-divider-content hr-divider-heading">Coins</h3>
+      <div class="flextable table-actions">
+        <div class="flextable-item">
+          <div class="input-with-icon">
+            <input type="text" class="form-control" placeholder="Search coins" v-model="query">
+            <span class="icon icon-magnifying-glass"></span>
+          </div>
+        </div>
+        <div class="flextable-item">
+          <select class="form-control float-right" v-model="currency" @change="getTickers" style="width: 100px;">
+            <option value="AUD">A$ AUD</option>
+            <option value="CAD">C$ CAD</option>
+            <option value="BRL">R$ BRL</option>
+            <option value="CHF">CHF CHF</option>
+            <option value="CLP">$ CLP</option>
+            <option value="CNY">¥ CNY</option>
+            <option value="CZK">Kč CZK</option>
+            <option value="DKK">kr DKK</option>
+            <option value="EUR">€ EUR</option>
+            <option value="GBP">£ GBP</option>
+            <option value="HKD">$ HKD</option>
+            <option value="HUF">Ft HUF</option>
+            <option value="IDR">Rp IDR</option>
+            <option value="ILS">₪ ILS</option>
+            <option value="INR">₹​ INR</option>
+            <option value="JPY">¥ JPY</option>
+            <option value="KRW">₩ KRW</option>
+            <option value="MXN">$ MXN</option>
+            <option value="MYR">RM MYR</option>
+            <option value="NZD">$ NZD</option>
+            <option value="PHP">₱ PHP</option>
+            <option value="PKR">₨ PKR</option>
+            <option value="PLN">zł PLN</option>
+            <option value="RUB">₽ RUB</option>
+            <option value="SEK">kr SEK</option>
+            <option value="SGD">$ SGD</option>
+            <option value="THB">฿ THB</option>
+            <option value="TRY">₺ TRY</option>
+            <option value="USD" selected>$ USD</option>
+            <option value="ZAR">R ZAR</option>
+          </select>
+        </div>
       </div>
 
-      <form class="form-inline m-b text-center">
-        <div class="row">
-          <div class="col-md-4 col-md-offset-3">
-            <div class="form-group has-feedback">
-              <input type="text" class="form-control" placeholder="Search for..." style="width: 250px;" v-model="query">
-              <span class="icon icon-magnifying-glass form-control-feedback"></span>
-            </div>
-          </div>
-          <div class="col-md-2">
-            <div class="form-group">
-              <select class="form-control" style="width: 150px;" v-model="currency" @change="getTickers">
-                <option value="AUD">A$ AUD</option>
-                <option value="CAD">C$ CAD</option>
-                <option value="BRL">R$ BRL</option>
-                <option value="CHF">CHF CHF</option>
-                <option value="CLP">$ CLP</option>
-                <option value="CNY">¥ CNY</option>
-                <option value="CZK">Kč CZK</option>
-                <option value="DKK">kr DKK</option>
-                <option value="EUR">€ EUR</option>
-                <option value="GBP">£ GBP</option>
-                <option value="HKD">$ HKD</option>
-                <option value="HUF">Ft HUF</option>
-                <option value="IDR">Rp IDR</option>
-                <option value="ILS">₪ ILS</option>
-                <option value="INR">₹​ INR</option>
-                <option value="JPY">¥ JPY</option>
-                <option value="KRW">₩ KRW</option>
-                <option value="MXN">$ MXN</option>
-                <option value="MYR">RM MYR</option>
-                <option value="NZD">$ NZD</option>
-                <option value="PHP">₱ PHP</option>
-                <option value="PKR">₨ PKR</option>
-                <option value="PLN">zł PLN</option>
-                <option value="RUB">₽ RUB</option>
-                <option value="SEK">kr SEK</option>
-                <option value="SGD">$ SGD</option>
-                <option value="THB">฿ THB</option>
-                <option value="TRY">₺ TRY</option>
-                <option value="USD" selected>$ USD</option>
-                <option value="ZAR">R ZAR</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-md-3"></div>
-        </div>
-      </form>
-
-      <div class="table-responsive">
+      <div class="table-responsive table-hover">
         <table class="table">
           <thead>
             <tr>
@@ -101,7 +93,7 @@
               <td>{{ ticker.name }}</td>
               <td>{{ formatCurrency(ticker[`price_${currency.toLowerCase()}`]) }}</td>
               <td>{{ formatCurrency(ticker[`market_cap_${currency.toLowerCase()}`]) }}</td>
-              <td :class="[ticker.percent_change_24h > 0 ? 'positive-delta' : 'negative-delta']">{{ ticker.percent_change_24h }}%</td>
+              <td :class="['delta-indicator', ticker.percent_change_24h > 0 ? 'delta-positive' : 'delta-negative']">{{ ticker.percent_change_24h }}%</td>
             </tr>
           </tbody>
         </table>
@@ -167,10 +159,10 @@ export default {
     margin-bottom: 20px;
     width: 150px;
   }
-  .positive-delta {
-    color: #2ecc71;
+  .delta-indicator {
+    display: table-cell;
   }
-  .negative-delta {
-    color: #e74c3c;
+  tr:hover {
+    cursor: pointer;
   }
 </style>

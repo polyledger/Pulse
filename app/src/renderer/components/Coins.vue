@@ -88,7 +88,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="ticker in filteredTickers">
+            <tr v-for="ticker in filteredTickers" @click="showChart">
               <td>{{ ticker.rank }}</td>
               <td>{{ ticker.name }}</td>
               <td>{{ formatCurrency(ticker[`price_${currency.toLowerCase()}`]) }}</td>
@@ -138,6 +138,9 @@ export default {
       }).catch(error => {
         this.error = error
       })
+    },
+    showChart () {
+      console.log('Showing chart...')
     }
   },
   computed: {

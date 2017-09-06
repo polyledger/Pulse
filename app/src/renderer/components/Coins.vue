@@ -107,7 +107,7 @@ import Coinage from 'coinage-lib'
 import constants from '../constants'
 
 export default {
-  name: 'home',
+  name: 'coins',
   data () {
     return {
       alert: {

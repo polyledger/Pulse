@@ -56,9 +56,7 @@
     }
   },
   "dependencies": {
-    "axios": "^0.16.1",
-    "coinage-lib": "^1.0.0",
-    "gdax": "^0.4.2",
+    "coinage-lib": "^1.0.1",
     "node-loader": "^0.6.0",
     "photonkit": "^0.1.2",
     "vue": "^2.3.3",

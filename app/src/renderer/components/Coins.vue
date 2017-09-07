@@ -1,35 +1,16 @@
 <template>
   <div class="container">
-    <div class="row mt-3">
-      <div class="col-md-12">
+    <div class="mt-3">
+      <div class="d-flex justify-content-center">
         <img id="logo" src="~@/assets/img/logo.png" alt="Polyledger">
       </div>
     </div>
-    <div class="row">
-      <div class="alert alert-success alert-dismissible" role="alert" v-show="alert.success">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-           <span aria-hidden="true">&times;</span>
-        </button>
-        <i class="icon icon-check"></i> {{ alert.success }}
-      </div>
-      <div class="alert alert-info alert-dismissible" role="alert" v-show="alert.info">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-           <span aria-hidden="true">&times;</span>
-        </button>
-        <i class="icon icon-info"></i> {{ alert.info }}
-      </div>
-      <div class="alert alert-warning alert-dismissible" role="alert" v-show="alert.warning">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-           <span aria-hidden="true">&times;</span>
-        </button>
-        <i class="icon icon-warning"></i> {{ alert.warning }}
-      </div>
-      <div class="alert alert-danger alert-dismissible" role="alert" v-show="alert.error">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-           <span aria-hidden="true">&times;</span>
-        </button>
-        <i class="icon icon-bug"></i> {{ alert.error }}
-      </div>
+
+    <div class="alert alert-danger alert-dismissible" role="alert" v-show="alert.error">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+         <span aria-hidden="true">&times;</span>
+      </button>
+      <i class="icon icon-bug"></i> {{ alert.error }}
     </div>
 
     <div class="row">
@@ -88,13 +69,13 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="ticker in filteredTickers" @click="showChart">
+            <router-link :to="`coins/${ticker.symbol}`" tag="tr" v-for="ticker in filteredTickers" :key="ticker.symbol">
               <td>{{ ticker.rank }}</td>
               <td>{{ ticker.name }}</td>
               <td>{{ formatCurrency(ticker[`price_${currency.toLowerCase()}`]) }}</td>
               <td>{{ formatCurrency(ticker[`market_cap_${currency.toLowerCase()}`]) }}</td>
               <td :class="['delta-indicator', ticker.percent_change_24h > 0 ? 'delta-positive' : 'delta-negative']">{{ ticker.percent_change_24h }}%</td>
-            </tr>
+            </router-link>
           </tbody>
         </table>
       </div>
@@ -157,11 +138,6 @@ export default {
 </script>
 
 <style>
-  #logo {
-    height: auto;
-    margin-bottom: 20px;
-    width: 150px;
-  }
   .delta-indicator {
     display: table-cell;
   }

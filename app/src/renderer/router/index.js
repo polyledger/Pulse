@@ -11,6 +11,11 @@ export default new Router({
       component: require('@/components/Coins')
     },
     {
+      path: '/coins/:symbol',
+      name: 'coin',
+      component: require('@/components/Coin')
+    },
+    {
       path: '*',
       redirect: '/coins'
     }

@@ -20,4 +20,9 @@
 
 <style lang="scss">
   @import './assets/css/toolkit-inverse.min.css';
+
+  #logo {
+    height: 40px;
+    width: 150px;
+  }
 </style>

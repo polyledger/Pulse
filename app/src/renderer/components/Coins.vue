@@ -74,7 +74,9 @@
               <td>{{ ticker.name }}</td>
               <td>{{ formatCurrency(ticker[`price_${currency.toLowerCase()}`]) }}</td>
               <td>{{ formatCurrency(ticker[`market_cap_${currency.toLowerCase()}`]) }}</td>
-              <td :class="['delta-indicator', ticker.percent_change_24h > 0 ? 'delta-positive' : 'delta-negative']">{{ ticker.percent_change_24h }}%</td>
+              <td>
+                <span :class="['delta-indicator', ticker.percent_change_24h > 0 ? 'delta-positive' : 'delta-negative']">{{ ticker.percent_change_24h }}%</span>
+              </td>
             </router-link>
           </tbody>
         </table>
@@ -119,9 +121,6 @@ export default {
       }).catch(error => {
         this.error = error
       })
-    },
-    showChart () {
-      console.log('Showing chart...')
     }
   },
   computed: {

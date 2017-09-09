@@ -79,8 +79,12 @@ let transpose = (a) => {
 var Charts = {
 
   line: function (element, elData, timeOnly) {
-    var data = elData.datasets
-    var labels = elData.labels
+    if (typeof window.chart !== 'undefined') {
+      window.chart.destroy()
+    }
+
+    var data = elData.datasets || []
+    var labels = elData.labels || {}
 
     labels = labels.map(label => {
       let value = timeOnly ? new Date(label).toLocaleTimeString() : new Date(label).toLocaleDateString()
@@ -137,7 +141,7 @@ var Charts = {
       }
     }
 
-    new window.Chart(element.get(0).getContext('2d'), { // eslint-disable-line no-new
+    window.chart = new window.Chart(element.get(0).getContext('2d'), { // eslint-disable-line no-new
       type: 'line',
       data: data,
       options: options
@@ -182,7 +186,7 @@ export default {
     setPeriod (period) {
       this.period = period
       window.$(`#chart-${this.ticker.id}`).removeClass('js-chart-drawn')
-      Coinage.getHistory(this.coin, this.price, period).then(history => {
+      Coinage.getHistory(this.coin, this.type, period).then(history => {
         let transposed = transpose(history)  // Transpose the returned data
         this.dataset = transposed[1]
         this.labels = transposed[0]

@@ -19,8 +19,8 @@
 
     <div class="dashhead">
       <div class="dashhead-titles">
-        <h6 class="dashhead-subtitle">Charts</h6>
-        <h3 class="dashhead-title">{{ ticker.name }} ({{ticker.symbol}})</h3>
+        <h6 class="dashhead-subtitle">{{ type }}</h6>
+        <h3 class="dashhead-title" v-cloak>{{ ticker.name }} <span class="text-muted">{{ticker.symbol}}</span></h3>
       </div>
 
       <div class="dashhead-toolbar">
@@ -159,7 +159,8 @@ export default {
       dataset: [],
       labels: [],
       period: '1day',
-      ticker: {}
+      ticker: {},
+      type: 'price'
     }
   },
   methods: {
@@ -181,7 +182,7 @@ export default {
     setPeriod (period) {
       this.period = period
       window.$(`#chart-${this.ticker.id}`).removeClass('js-chart-drawn')
-      Coinage.getHistory(this.coin, 'price', period).then(history => {
+      Coinage.getHistory(this.coin, this.price, period).then(history => {
         let transposed = transpose(history)  // Transpose the returned data
         this.dataset = transposed[1]
         this.labels = transposed[0]

@@ -1,6 +1,6 @@
 # Pulse
 
-> A cross-platform cryptocurrency analytics platform
+> A macOS cryptocurrency price tracker app
 
 ![Coin List Demo](/demo-1.png?raw=true "Coin List Demo")
 
